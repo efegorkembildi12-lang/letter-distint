@@ -1,0 +1,39 @@
+name: Windows EXE Build
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:   # Manuel tetikleme butonu
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Kodu indir
+        uses: actions/checkout@v4
+
+      - name: Python kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Bağımlılıkları kur
+        run: |
+          pip install pdfminer.six openpyxl pyinstaller
+
+      - name: EXE derle
+        run: |
+          pyinstaller `
+            --onefile `
+            --windowed `
+            --name "DagitimMektubuLFT" `
+            --add-data "core;core" `
+            app.py
+
+      - name: EXE'yi artifact olarak yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: DagitimMektubuLFT-Windows
+          path: dist/DagitimMektubuLFT.exe
+          retention-days: 30
