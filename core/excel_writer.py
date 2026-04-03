@@ -1,6 +1,5 @@
 """
-excel_writer.py — LFT Excel dosyasına veri eşleştirme ve yazma
-Hedef dosya: ЛФТ_260218_Договор__95721.xlsx  (ve benzerleri)
+excel_writer.py — Excel dosyasına veri eşleştirme ve yazma
 Hedef sayfa: "Дог.95721"
 
 Sütun yapısı (her tedarikçi = 4 sütun bloku):
@@ -269,7 +268,7 @@ def execute_write_operations(
     Planlanan yazma işlemlerini Excel dosyasına uygula.
 
     Args:
-        excel_path:   LFT dosya yolu
+        excel_path:   Excel dosya yolu
         sheet_name:   Hedef sayfa adı (örn: "Дог.95721")
         ops:          plan_write_operations'dan gelen liste
         hyperlinks:   {belge_adı: dosya_yolu} → Row 6 başlığa yorum olarak eklenir
@@ -332,7 +331,7 @@ def execute_write_operations(
         from openpyxl.comments import Comment
         comment = Comment(
             text=f"Bağlantılı belgeler:\n{link_text}",
-            author="LFT Otomasyon"
+            author="letter-distint"
         )
         header_cell.comment = comment
         messages.append(f"✓ {len(hyperlinks)} belge referansı Row 6 yorumuna eklendi")
@@ -359,7 +358,7 @@ def process_letter_to_excel(
     dry_run: bool = False,
 ) -> MatchResult:
     """
-    Dağıtım mektubu + УПД verilerini LFT Excel'e işle.
+    Dağıtım mektubu + УПД verilerini Excel'e işle.
     Tüm adımları kapsar: tespit → planlama → yazma.
     """
     if openpyxl is None:

@@ -26,7 +26,7 @@ Russian procurement workflows involve three document types that must be reconcil
 
 1. **Parse** — extracts supplier names, invoice numbers, amounts, and material lists from PDF files
 2. **Validate** — checks that UPD totals match the distribution letter amount (highlights mismatches)
-3. **Match** — finds the correct supplier columns in your LFT Excel workbook automatically
+3. **Match** — finds the correct supplier columns in your Excel workbook automatically
 4. **Write** — fills in the data; original file is never overwritten (`_updated` copy is created)
 
 A dry-run preview shows exactly what will be written before any file is touched.
@@ -46,7 +46,6 @@ A dry-run preview shows exactly what will be written before any file is touched.
 ## Who is this for?
 
 - Finance and procurement teams working with **Russian suppliers**
-- Organizations using **LFT contract Excel templates** (ЛФТ_*.xlsx)
 - Anyone who manually copies data from Russian PDF documents into spreadsheets
 
 If you receive Russian distribution letters, match them against UPDs, and fill in Excel — this tool eliminates that work.
@@ -99,9 +98,8 @@ pyinstaller DagitimMektubuLFT.spec
 
 ## Excel template requirements
 
-Your Excel workbook must follow the LFT contract format:
-- Filename matches `ЛФТ_*.xlsx`
-- Contains a material list with supplier columns (volume, price, cost, payment)
+Your Excel workbook must contain:
+- A material list with supplier columns (volume, price, cost, payment)
 - Sheet name is specified in the app (Tab 1)
 
 ---
@@ -130,7 +128,7 @@ MIT © [Efe Görkem Bildi](https://github.com/efegorkembildi12-lang)
 
 1. **Парсинг** — извлекает наименования поставщиков, номера счетов, суммы и перечень материалов из PDF
 2. **Проверка** — сверяет итоговые суммы УПД с суммой из распределительного письма (расхождения выделяются)
-3. **Сопоставление** — автоматически находит нужные столбцы поставщиков в Excel-шаблоне ЛФТ
+3. **Сопоставление** — автоматически находит нужные столбцы поставщиков в Excel-файле
 4. **Запись** — вносит данные в файл; оригинал не изменяется (создаётся копия с суффиксом `_updated`)
 
 Перед записью можно просмотреть план изменений в режиме dry-run.
@@ -150,7 +148,6 @@ MIT © [Efe Görkem Bildi](https://github.com/efegorkembildi12-lang)
 ## Для кого предназначена программа
 
 - Финансовые и закупочные отделы, работающие с **российскими поставщиками**
-- Организации, использующие **шаблоны договоров ЛФТ** (ЛФТ_*.xlsx)
 - Все, кто вручную переносит данные из российских PDF-документов в Excel
 
 Если вы получаете распределительные письма, сверяете их с УПД и заполняете Excel — эта программа избавит вас от этой работы.
@@ -203,9 +200,8 @@ pyinstaller DagitimMektubuLFT.spec
 
 ## Требования к шаблону Excel
 
-Excel-файл должен соответствовать формату договора ЛФТ:
-- Имя файла соответствует маске `ЛФТ_*.xlsx`
-- Содержит перечень материалов со столбцами поставщиков (объём, цена, стоимость, оплата)
+Excel-файл должен содержать:
+- Перечень материалов со столбцами поставщиков (объём, цена, стоимость, оплата)
 - Имя листа указывается в приложении (Вкладка 1)
 
 ---
