@@ -1,6 +1,6 @@
 """
-app.py — PDF Belge → Excel Otomasyon
-Dil desteği: Türkçe / Русский
+app.py — PDF Document → Excel Automation
+Language support: Türkçe / Русский / English
 """
 import sys, threading, datetime
 from pathlib import Path
@@ -46,7 +46,7 @@ LANG = {
 "status_ok":"✓ OK","status_pending":"Bekliyor","processing_row":"İşleniyor",
 },
 "ru": {
-"app_title":"PDF Документ → Excel Автоматизация","header_title":"PDF → Excel","lang_btn":"TR",
+"app_title":"PDF Документ → Excel Автоматизация","header_title":"PDF → Excel","lang_btn":"EN",
 "ready":"Готово — загрузите PDF файлы",
 "tab_files":"  1 · Файлы  ","tab_preview":"  2 · Предпросмотр  ","tab_write":"  3 · Запись в Excel  ","tab_log":"  4 · Журнал  ",
 "pdf_section":"  PDF Документы  ","btn_add_pdf":"+ Добавить PDF","btn_clear":"Очистить",
@@ -79,6 +79,40 @@ LANG = {
 "type_letter":"Распред. письмо","type_upd":"УПД","type_invoice":"Счёт","type_unknown":"?",
 "status_ok":"✓ OK","status_pending":"Ожидание","processing_row":"Обработка",
 },
+"en": {
+"app_title":"PDF Document → Excel Automation","header_title":"PDF → Excel","lang_btn":"TR",
+"ready":"Ready — load PDF files",
+"tab_files":"  1 · Files  ","tab_preview":"  2 · Preview  ","tab_write":"  3 · Excel Write  ","tab_log":"  4 · Log  ",
+"pdf_section":"  PDF Documents  ","btn_add_pdf":"+ Add PDF","btn_clear":"Clear",
+"pdf_hint":"Select distribution letter + UPD files",
+"col_filename":"Filename","col_type":"Type","col_status":"Status",
+"excel_section":"  Excel File  ","not_selected":"— not selected —","btn_select_excel":"Select Excel",
+"sheet_label":"Sheet:","btn_process":"⚙  Process PDF Files →",
+"validation_sec":"  Validation  ","not_processed":"PDF not processed.","extracted_sec":"  Extracted Data  ",
+"btn_match":"🔗  Match with Excel →",
+"write_plan_sec":"  Write Plan  ","col_row":"Row","col_col":"Column","col_header":"Header","col_value":"Value","col_desc":"Description",
+"dry_run_chk":"Test mode (dry-run) — preview without writing",
+"btn_preview":"👁  Preview (Dry-Run)","btn_write":"✍  Write to Excel",
+"log_label":"Operation log","btn_clear_log":"Clear Log",
+"warn_no_pdf":"Add PDF files first.","warn_no_letter":"Process PDFs first (Tab 1).",
+"warn_no_excel":"No Excel file selected (Tab 1).","warn_no_match":"Match first (Tab 2).",
+"confirm_write":"Will write to Excel!\n\nOriginal file will not be modified — a new file with '_updated' suffix will be created.\n\nContinue?",
+"confirm_title":"Confirm","success_title":"Success","success_msg":"Excel file updated!\n\n","error_title":"Error","match_error":"Match Error",
+"lbl_number":"Number","lbl_amount":"Amount","lbl_supplier":"Supplier","lbl_inn":"INN",
+"lbl_invoice":"Invoice №","lbl_contract":"Contract","lbl_spec":"Spec. №","lbl_upds":"UPDs",
+"lbl_smeta":"Estimate pos.","lbl_buyer":"Buyer","lbl_total":"Total","lbl_materials":"Materials",
+"no_letter":"⚠  Distribution letter not found",
+"val_ok":"✓  UPD total = letter amount",
+"val_diff":"⚠  Difference: {diff:,.2f} ₽  (letter: {letter:.2f}, UPD: {upd:.2f})",
+"val_no_letter":"⚠  Distribution letter not loaded",
+"processing":"Processing PDFs...","matching":"Matching...",
+"writing_dry":"Test write...","writing":"Writing to Excel...",
+"status_letter_ok":"✓ Letter: found","status_letter_no":"⚠ Letter: MISSING",
+"status_upd":"{n} UPDs","ops_planned":"✓ {n} operations planned · {col}",
+"preview_done":"Preview complete","write_done":"Write complete","msgs":"{n} messages",
+"type_letter":"Dist. Letter","type_upd":"UPD","type_invoice":"Invoice","type_unknown":"?",
+"status_ok":"✓ OK","status_pending":"Pending","processing_row":"Processing",
+},
 }
 
 BG_MAIN="#F8F7F5"; BG_CARD="#FFFFFF"; BG_ACCENT="#1A1A1A"
@@ -107,7 +141,8 @@ class MainApp(tk.Tk):
     def T(self,key): return LANG[self.state.lang].get(key,key)
 
     def _toggle_lang(self):
-        self.state.lang="ru" if self.state.lang=="tr" else "tr"
+        cycle={"tr":"ru","ru":"en","en":"tr"}
+        self.state.lang=cycle[self.state.lang]
         self._apply_lang()
 
     def _apply_lang(self):
