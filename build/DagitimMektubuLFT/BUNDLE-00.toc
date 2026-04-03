@@ -1,0 +1,3 @@
+([('DagitimMektubuLFT',
+   '/Users/efegorkembildi/Desktop/dist_letter_app/dist/DagitimMektubuLFT',
+   'EXECUTABLE')],)

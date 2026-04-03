@@ -90,7 +90,7 @@ Use the **TR / RU / EN** button in the top-right corner to switch the interface 
 
 ```bash
 pip install pyinstaller
-pyinstaller DagitimMektubuLFT.spec
+pyinstaller letter-distint.spec
 # Output: dist/letter-distint.exe
 ```
 
@@ -192,7 +192,7 @@ python app.py
 
 ```bash
 pip install pyinstaller
-pyinstaller DagitimMektubuLFT.spec
+pyinstaller letter-distint.spec
 # Результат: dist/letter-distint.exe
 ```
 
