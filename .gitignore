@@ -1,0 +1,16 @@
+# Build artifacts
+build/
+dist/
+dist.zip
+*.spec.bak
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.venv/
+venv/
